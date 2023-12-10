@@ -1,17 +1,47 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+import time
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import psycopg2
 
-headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0"}
-url = "https://www.imdb.com/search/title/?title_type=feature"
-response = requests.get(url, headers=headers)
-# print(response)
+webdriver_path = "C:/Users/Egle/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe"
+service = Service(webdriver_path)
+service.start()
+driver = webdriver.Chrome(service=service)
 
-soup = BeautifulSoup(response.content, 'html.parser')
-# print(soup)
+url = f'https://www.imdb.com/search/title/?title_type=feature'
+driver.get(url)
+# # headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0"}
+# # response = requests.get(url, headers=headers)
+# # print(response)
+
+def paspausti():
+    load_more = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, 'ipc-see-more__button'))
+    )
+    driver.execute_script("arguments[0].scrollIntoView();", load_more)
+    load_more.click()
+    time.sleep(4)
+
+driver.execute_script('window.scrollBy(0, 12000);')
+time.sleep(3)
+
+paspausti()
+
+for i in range(1, 51):
+    paspausti()
+
+soup = BeautifulSoup(driver.page_source, 'html.parser')
+# # soup = BeautifulSoup(response.content, 'html.parser')
+# # print(soup)
 
 movies = soup.find_all('li', class_='ipc-metadata-list-summary-item')
-# print(len(movies))
+# # print(len(movies))
 
 movies_list = []
 for movie in movies:
