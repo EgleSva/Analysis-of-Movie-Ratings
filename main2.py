@@ -13,20 +13,20 @@ import psycopg2
 db_host = 'localhost'
 db_name = 'movies'
 db_user = 'postgres'
-db_password = ''
+db_password = '3T8tWn4ME'
 
 connection = psycopg2.connect(host=db_host, database=db_name, user=db_user, password=db_password)
 cursor = connection.cursor()
 create_table_query = '''
     CREATE TABLE IF NOT EXISTS imdb(
         id SERIAL PRIMARY KEY,
-        title text,
-        years text,
-        duration text,
-        rating text,
-        people_rating text,
-        critic_rating text,
-        votes text
+        pavadinimas text,
+        metai text,
+        filmo trukme text,
+        filmo indeksas text,
+        zmoniu ivertinimas text,
+        kritiku ivertinimas text,
+        balsai text
     )
 '''
 cursor.execute(create_table_query)
@@ -83,7 +83,7 @@ driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 time.sleep(5)  # Ukrovimo laikas
 
 # Paspaudžiame "See More" mygtuką 4 kartus (pakeista iš 25 į 4)
-for i in range(30):
+for i in range(4):
     click_more()
     # Scrollinam
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -131,8 +131,11 @@ for movie in movies:
 
 # Irasome duomenis i SQL lentele
     insert_query = '''
-        INSERT INTO imdb(title, years, duration, rating, people_rating, critic_rating, voted)values(%s, %s, %s, %s, %s, %s, %s)
+        INSERT INTO imdb(title, years, duration, rating, people_rating, critic_rating, voted)values(%s, %s,
+        %s, %s, %s, %s, %s)
     '''
+    cursor.execute(insert_query, (title, year, trukme, rating, people_rating_text, critic_rating_text, votes))
+    connection.commit()
 
 # Uždarome webdriver
 driver.quit()
