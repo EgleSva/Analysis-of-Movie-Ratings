@@ -7,9 +7,32 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import re
 import time
+import psycopg2
+
+# Aprasoma duombaze ir sukuriama lentele
+db_host = 'localhost'
+db_name = 'movies'
+db_user = 'postgres'
+db_password = ''
+
+connection = psycopg2.connect(host=db_host, database=db_name, user=db_user, password=db_password)
+cursor = connection.cursor()
+create_table_query = '''
+    CREATE TABLE IF NOT EXISTS imdb(
+        id SERIAL PRIMARY KEY,
+        title text,
+        years text,
+        duration text,
+        rating text,
+        people_rating text,
+        critic_rating text,
+        votes text
+    )
+'''
+cursor.execute(create_table_query)
 
 # Nustatome webdriver'io kelią
-webdriver_path = "C:/Users/Vykis/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe"
+webdriver_path = "C:/Users/Egle/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe"
 service = Service(webdriver_path)
 service.start()
 
@@ -105,6 +128,11 @@ for movie in movies:
                         'Ivertinimas pagal zmones': people_rating_text,
                         'Ivertinimas pagal kritikus': critic_rating_text,
                         'Votes': votes})
+
+# Irasome duomenis i SQL lentele
+    insert_query = '''
+        INSERT INTO imdb(title, years, duration, rating, people_rating, critic_rating, voted)values(%s, %s, %s, %s, %s, %s, %s)
+    '''
 
 # Uždarome webdriver
 driver.quit()
