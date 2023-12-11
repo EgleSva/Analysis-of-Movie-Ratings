@@ -9,6 +9,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import psycopg2
 
+### PRADZIA - pasirasome, kad automatiskai uzkrautu daugiau duomenu puslapyje
 webdriver_path = "C:/Users/Egle/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe"
 service = Service(webdriver_path)
 service.start()
@@ -31,11 +32,11 @@ def paspausti():
 driver.execute_script('window.scrollBy(0, 12000);')
 time.sleep(3)
 
-paspausti()
-
 for i in range(1, 51):
     paspausti()
+### PABAIGA - pasirasome, kad automatiskai uzkrautu daugiau duomenu puslapyje
 
+### PRADZIA - duomenu paemimas
 soup = BeautifulSoup(driver.page_source, 'html.parser')
 # # soup = BeautifulSoup(response.content, 'html.parser')
 # # print(soup)
