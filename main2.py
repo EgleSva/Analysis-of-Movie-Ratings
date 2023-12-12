@@ -13,12 +13,12 @@ import psycopg2
 db_host = 'localhost'
 db_name = 'movies'
 db_user = 'postgres'
-db_password = ''
+db_password = '3T8tWn4ME'
 
 connection = psycopg2.connect(host=db_host, database=db_name, user=db_user, password=db_password)
 cursor = connection.cursor()
 create_table_query = '''
-    CREATE TABLE IF NOT EXISTS imdb(
+    CREATE TABLE IF NOT EXISTS imdb4(
         id SERIAL PRIMARY KEY,
         title text,
         years text,
@@ -53,6 +53,7 @@ def click_more():
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, '.ipc-metadata-list-summary-item')))
     except Exception as e:
+        print(f"Error clicking 'More' button: {e}")
         pass
 
 
@@ -82,12 +83,12 @@ driver.get(url)
 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 time.sleep(5)  # Uzkrovimo laikas
 
-# Paspaudžiame "See More" mygtuką 5 kartus (pakeista iš 25 į 5)
-for i in range(5):
+# Paspaudžiame "See More" mygtuką 5 kartus
+for i in range(500):
     click_more()
     # Scrollinam
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    time.sleep(5)  # Laukiam kol uzkrauna
+    time.sleep(6)  # Laukiam kol uzkrauna
 
 # Parsisiunčiame HTML
 soup = BeautifulSoup(driver.page_source, 'html.parser')
@@ -133,19 +134,26 @@ for movie in movies:
 
     # Irasome duomenis i SQL lentele
     insert_query = '''
-        INSERT INTO imdb(title, years, trukme, rating, people_rating_text, critic_rating_text, votes) VALUES (%s, %s, %s, %s, %s, %s, %s)
+        INSERT INTO imdb4(title, years, duration, rating, people_rating, critic_rating, votes) VALUES (%s, %s, %s, %s, %s, %s, %s)
     '''
-    cursor.execute(insert_query, (title, year, trukme, rating, people_rating_text, critic_rating_text, votes))
-    connection.commit()
+    try:
+        cursor.execute(insert_query, (title, year, trukme, rating, people_rating_text, critic_rating_text, votes))
+        connection.commit()
+    except Exception as e:
+        print(f"Error inserting data into the database: {e}")
 
 # Uždarome webdriver
 driver.quit()
 
 # Sukuriame DataFrame ir išsaugome į CSV
 df = pd.DataFrame(movies_list)
-df.to_csv("imdb5.csv", index=False)
-print(df)
+# df.to_csv("imdb6.csv", index=False)
+# print(df)
 
 # Uždarome duombazės prisijungimą
 cursor.close()
 connection.close()
+# Darbas su svetaines duomenimis baigtas
+
+
+# Analizes dalis, pradzia
