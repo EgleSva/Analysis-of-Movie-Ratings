@@ -9,7 +9,7 @@ import re
 import time
 import psycopg2
 
-# Aprasoma duombaze ir sukuriama lentele
+### Aprasoma duombaze ir sukuriama lentele
 db_host = 'localhost'
 db_name = 'movies'
 db_user = 'postgres'
@@ -31,16 +31,16 @@ create_table_query = '''
 '''
 cursor.execute(create_table_query)
 
-# Nustatome webdriver'io kelią
+### Nustatome webdriver'io kelią
 webdriver_path = "C:/Users/Egle/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe"
 service = Service(webdriver_path)
 service.start()
 
-# Sukuriamas naujas webdriver
+### Sukuriamas naujas webdriver
 driver = webdriver.Chrome(service=service)
 
 
-# Funkcija, kuri paspaudžia "More" mygtuką ir laukia, kol bus įkelti nauji rezultatai
+### Funkcija, kuri paspaudžia "More" mygtuką ir laukia, kol bus įkelti nauji rezultatai
 def click_more():
     try:
         more_button = WebDriverWait(driver, 10).until(
@@ -57,12 +57,12 @@ def click_more():
         pass
 
 
-# Function to convert duration to minutes
+### Function to convert duration to minutes
 def convert_duration_to_minutes(duration):
     if duration is None:
         return None
 
-    # Extract hours and minutes using regular expression
+    ### Extract hours and minutes using regular expression
     match = re.match(r'(\d+)h\s*(\d*)m*', duration)
 
     if match:
@@ -73,24 +73,24 @@ def convert_duration_to_minutes(duration):
         return None
 
 
-# Sukuriame sąrašą filmų
+### Sukuriame sąrašą filmų
 movies_list = []
 
 url = "https://www.imdb.com/search/title/?title_type=feature"
 driver.get(url)
 
-# Puslapio scrolinimas
+### Puslapio scrolinimas
 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 time.sleep(5)  # Uzkrovimo laikas
 
-# Paspaudžiame "See More" mygtuką 5 kartus
+### Paspaudžiame "See More" mygtuką 5 kartus
 for i in range(500):
     click_more()
     # Scrollinam
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     time.sleep(6)  # Laukiam kol uzkrauna
 
-# Parsisiunčiame HTML
+### Parsisiunčiame HTML
 soup = BeautifulSoup(driver.page_source, 'html.parser')
 movies = soup.find_all('li', class_='ipc-metadata-list-summary-item')
 
@@ -121,10 +121,10 @@ for movie in movies:
     votes_element = movie.find('div', class_='sc-53c98e73-0 kRnqtn')
     votes_text = votes_element.text.strip() if votes_element else None
 
-    # Jei 'Votes' nėra pateikti, priskiriame 'N/A'
+    ### Jei 'Votes' nėra pateikti, priskiriame 'N/A'
     votes = 'N/A' if votes_text is None else f"{int(float(''.join(filter(str.isdigit, votes_text.replace(',', ''))))) :,}"
 
-    # Jei 'Trukme' nėra pateikta, priskiriame 'N/A'
+    ### Jei 'Trukme' nėra pateikta, priskiriame 'N/A'
     trukme = 'N/A' if duration is None else duration
 
     movies_list.append({'Pavadinimas': title, 'Metai': year, 'Trukme': trukme, 'Filmo indeksas': rating,
@@ -132,7 +132,7 @@ for movie in movies:
                         'Ivertinimas pagal kritikus': critic_rating_text,
                         'Votes': votes})
 
-    # Irasome duomenis i SQL lentele
+    ### Irasome duomenis i SQL lentele
     insert_query = '''
         INSERT INTO imdb4(title, years, duration, rating, people_rating, critic_rating, votes) VALUES (%s, %s, %s, %s, %s, %s, %s)
     '''
@@ -142,18 +142,15 @@ for movie in movies:
     except Exception as e:
         print(f"Error inserting data into the database: {e}")
 
-# Uždarome webdriver
+### Uždarome webdriver
 driver.quit()
 
-# Sukuriame DataFrame ir išsaugome į CSV
+### Sukuriame DataFrame ir išsaugome į CSV
 df = pd.DataFrame(movies_list)
-# df.to_csv("imdb6.csv", index=False)
+# df.to_csv("imdb4.csv", index=False)
 # print(df)
 
-# Uždarome duombazės prisijungimą
+### Uždarome duombazės prisijungimą
 cursor.close()
 connection.close()
-# Darbas su svetaines duomenimis baigtas
-
-
-# Analizes dalis, pradzia
+### Darbas su svetaines duomenimis baigtas
