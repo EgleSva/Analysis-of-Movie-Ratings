@@ -4,8 +4,19 @@ import matplotlib.pyplot as plt
 # # Load data from CSV
 df = pd.read_csv("imdb4.csv")
 
+### Apsivalome duomenis
 
+df.dropna(axis=0, inplace=True)
 df['years'] = pd.to_numeric(df['years'], errors='coerce')
+df['people_rating'] = df['people_rating'].astype(float)
+df['critic_rating'] = df['critic_rating'].astype(int)
+df['duration'] = df['duration'].astype(int)
+df['votes'] = df['votes'].replace(',', '', regex=True)
+df['votes'] = df['votes'].astype(int)
+
+## pasitikriname, kokius duomenu tipus turime
+# column_types = df.dtypes
+# print(column_types)
 
 ### Zmoniu ir kritiku reitingai per metus
 avg_ratings_by_year = df.groupby('years')[['people_rating', 'critic_rating']].mean()
@@ -27,3 +38,4 @@ ax2.set_ylim(1, 100)
 plt.title('Average Ratings by Year')
 # plt.show()
 
+###
