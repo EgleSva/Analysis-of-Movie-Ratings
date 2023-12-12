@@ -11,28 +11,28 @@ import psycopg2
 
 # Aprasoma duombaze ir sukuriama lentele
 db_host = 'localhost'
-db_name = 'movies'
+db_name = 'duomenubaze1'
 db_user = 'postgres'
-db_password = '3T8tWn4ME'
+db_password = ''
 
 connection = psycopg2.connect(host=db_host, database=db_name, user=db_user, password=db_password)
 cursor = connection.cursor()
 create_table_query = '''
     CREATE TABLE IF NOT EXISTS imdb(
         id SERIAL PRIMARY KEY,
-        pavadinimas text,
-        metai text,
-        filmo trukme text,
-        filmo indeksas text,
-        zmoniu ivertinimas text,
-        kritiku ivertinimas text,
-        balsai text
+        title text,
+        years text,
+        duration text,
+        rating text,
+        people_rating text,
+        critic_rating text,
+        votes text
     )
 '''
 cursor.execute(create_table_query)
 
 # Nustatome webdriver'io kelią
-webdriver_path = "C:/Users/Egle/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe"
+webdriver_path = "C:/Users/Vykis/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe"
 service = Service(webdriver_path)
 service.start()
 
@@ -80,10 +80,10 @@ driver.get(url)
 
 # Puslapio scrolinimas
 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-time.sleep(5)  # Ukrovimo laikas
+time.sleep(5)  # Uzkrovimo laikas
 
-# Paspaudžiame "See More" mygtuką 4 kartus (pakeista iš 25 į 4)
-for i in range(4):
+# Paspaudžiame "See More" mygtuką 5 kartus (pakeista iš 25 į 5)
+for i in range(5):
     click_more()
     # Scrollinam
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -94,7 +94,9 @@ soup = BeautifulSoup(driver.page_source, 'html.parser')
 movies = soup.find_all('li', class_='ipc-metadata-list-summary-item')
 
 for movie in movies:
-    title = movie.find('h3', class_='ipc-title__text').text.strip()
+    title_element = movie.find('h3', class_='ipc-title__text')
+    title = re.sub(r'^\d+\.\s*', '', title_element.text.strip()) if title_element else None
+
     movie_details = movie.find_all('span', class_='sc-43986a27-8 jHYIIK dli-title-metadata-item')
     year = None
     duration = None
@@ -129,10 +131,9 @@ for movie in movies:
                         'Ivertinimas pagal kritikus': critic_rating_text,
                         'Votes': votes})
 
-# Irasome duomenis i SQL lentele
+    # Irasome duomenis i SQL lentele
     insert_query = '''
-        INSERT INTO imdb(title, years, duration, rating, people_rating, critic_rating, voted)values(%s, %s,
-        %s, %s, %s, %s, %s)
+        INSERT INTO imdb(title, years, duration, rating, people_rating, critic_rating, votes) VALUES (%s, %s, %s, %s, %s, %s, %s)
     '''
     cursor.execute(insert_query, (title, year, trukme, rating, people_rating_text, critic_rating_text, votes))
     connection.commit()
@@ -142,5 +143,9 @@ driver.quit()
 
 # Sukuriame DataFrame ir išsaugome į CSV
 df = pd.DataFrame(movies_list)
-df.to_csv("imdb30.csv", index=False)
+df.to_csv("imdb5.csv", index=False)
 print(df)
+
+# Uždarome duombazės prisijungimą
+cursor.close()
+connection.close()
