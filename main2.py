@@ -11,7 +11,7 @@ import psycopg2
 
 # Aprasoma duombaze ir sukuriama lentele
 db_host = 'localhost'
-db_name = 'duomenubaze1'
+db_name = 'movies'
 db_user = 'postgres'
 db_password = ''
 
@@ -32,7 +32,7 @@ create_table_query = '''
 cursor.execute(create_table_query)
 
 # Nustatome webdriver'io kelią
-webdriver_path = "C:/Users/Vykis/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe"
+webdriver_path = "C:/Users/Egle/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe"
 service = Service(webdriver_path)
 service.start()
 
@@ -133,7 +133,7 @@ for movie in movies:
 
     # Irasome duomenis i SQL lentele
     insert_query = '''
-        INSERT INTO imdb(title, years, duration, rating, people_rating, critic_rating, votes) VALUES (%s, %s, %s, %s, %s, %s, %s)
+        INSERT INTO imdb(title, years, trukme, rating, people_rating_text, critic_rating_text, votes) VALUES (%s, %s, %s, %s, %s, %s, %s)
     '''
     cursor.execute(insert_query, (title, year, trukme, rating, people_rating_text, critic_rating_text, votes))
     connection.commit()
