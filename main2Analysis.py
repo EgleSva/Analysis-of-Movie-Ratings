@@ -43,6 +43,7 @@ df['title'] = df['title'].astype("string")
 # populiariausi_metai = df['years'].value_counts().head(5)
 # print(populiariausi_metai)
 
+
 # # 1. lentele. Top 5 dazniausiai naudojami zodziai pavadinimuose, kurie yra ilgesni arba lygus nei 4 raides.
 # col = 'title'
 #
@@ -75,7 +76,7 @@ df['title'] = df['title'].astype("string")
 # plt.ylabel('Frequency')
 # plt.title('Top 5 words in titles that are longer or equal to 4 letters')
 # plt.show()
-# # 1 lentele pabaiga.
+# # 1 lenteles pabaiga.
 
 
 # # 2 lentele.  Koreliacija - kaip kinta zmoniu ivertinimas, nuo balsu kiekio
@@ -89,10 +90,97 @@ df['title'] = df['title'].astype("string")
 # plt.ylabel('People\'s Ratings')
 #
 # plt.show()
-# # 2 lentele pabaiga.
+# # 2 lenteles pabaiga.
 
 
-# # 3 lentele. Top 10 filmu, kuriu pavadinime yra zodis Christmas, geriausias ivertinimas pagal kritikus, geriausias ivertinimas pagal zmones, daugiausia balsu.
+# # 3 lentele. Palyginimas - kritiku ir zmoniu ivertinimo vidurkis pagal filmo isleidimo metus
+# df['years'] = pd.to_numeric(df['years'], errors='coerce')
+#
+# avg_ratings_by_year = df.groupby('years')[['people_rating', 'critic_rating']].mean()
+#
+# fig, ax1 = plt.subplots(figsize=(12, 6))
+#
+# ax1.plot(avg_ratings_by_year.index, avg_ratings_by_year['people_rating'], label='People Rating', marker='o', color='green')
+# ax1.set_xlabel('Year')
+# ax1.set_ylabel('People Rating', color='green')
+# ax1.tick_params(axis='y', labelcolor='green')
+# ax1.set_ylim(1, 10)
+#
+# ax2 = ax1.twinx()
+# ax2.plot(avg_ratings_by_year.index, avg_ratings_by_year['critic_rating'], label='Critic Rating', marker='o', color='red')
+# ax2.set_ylabel('Critic Rating', color='red')
+# ax2.tick_params(axis='y', labelcolor='red')
+# ax2.set_ylim(1, 100)
+#
+# plt.title('Average Ratings by Year')
+# plt.show()
+# # 3 lenteles pabaiga
+
+
+# # 4 lentele. Prognoze - kaip keiciasi vidutinis balsu skaicius per filma, pagal metus ir prognoze iki 2035
+#
+# # Balsu suma pagal metus
+# votes_per_year = df.groupby('years')['votes'].sum()
+#
+# # Fimu suma pagal metus
+# movies_count_per_year = df.groupby('years').size()
+#
+# # Balsu vidurkis
+# average_votes_per_movie_per_year = votes_per_year / movies_count_per_year
+#
+# # Sudarome DataFrame su reikiamais duomenimis
+# df_votes_per_year = pd.DataFrame({
+#     'Years': average_votes_per_movie_per_year.index,
+#     'Average Votes per Movie': average_votes_per_movie_per_year.values
+# })
+#
+# df_votes_per_year = df_votes_per_year[df_votes_per_year['Years'] >= 1990]
+#
+# # Tiesinės regresijos modelis
+# X = df_votes_per_year[['Years']]
+# y = df_votes_per_year['Average Votes per Movie']
+# reg_model = LinearRegression().fit(X, y)
+#
+# # Prognozė nuo 2024 iki 2035 metų
+# future_years = pd.DataFrame({'Years': range(2024, 2036)})
+# future_votes = reg_model.predict(future_years)
+#
+# # Sudarome DataFrame su prognoze
+# df_future_votes = pd.DataFrame({
+#     'Years': future_years['Years'],
+#     'Average Votes per Movie (Forecast)': future_votes
+# })
+# # Sudarome bendrą DataFrame su esamais ir prognozuojamais duomenimis
+# df_combined = pd.concat([df_votes_per_year, df_future_votes])
+#
+# # Grafiko piešimas
+# plt.figure(figsize=(12, 8))
+# plt.plot(df_combined['Years'], df_combined['Average Votes per Movie'], label='Actual (1990-2022)')
+# plt.plot(df_combined['Years'], df_combined['Average Votes per Movie (Forecast)'], label='Forecast (2024-2035)', linestyle='dashed', color='red')
+# plt.title('Average Votes per Movie Over the Years with Forecast')
+# plt.xlabel('Years')
+# plt.ylabel('Average Votes per Movie')
+# plt.legend()
+# plt.show()
+# # 4 lenteles pabaiga.
+
+
+# # 5 lentele. Top 10 populiariausiu kategoriju.
+# # Issitraukia top 10 populiariausiu kategoriju
+# genre_popularity = df['genre'].value_counts().head(10)
+#
+# # Grafikas
+# genre_popularity.plot(kind='bar', color='orange')
+# plt.title('Top 10 most popular genres')
+# plt.xlabel('Genres')
+# plt.ylabel('Frequency')
+# plt.xticks(rotation=45)
+# plt.subplots_adjust(bottom=0.3)
+# plt.show()
+# # 5 lenteles pabaiga.
+
+
+# # 6 lentele. Top 10 filmu, kuriu pavadinime yra zodis Christmas, geriausias ivertinimas pagal kritikus, geriausias ivertinimas pagal zmones, daugiausia balsu.
 # # Filtruojame filmus, kurių pavadinime yra "Christmas"
 # df_christmas = df[df['title'].str.contains('Christmas', case=False)]
 #
@@ -139,80 +227,4 @@ df['title'] = df['title'].astype("string")
 # fig.suptitle('Top 10 Critically Acclaimed Movies with People Ratings and Votes')
 # fig.tight_layout(rect=[0, 0.03, 1, 0.95])
 # plt.show()
-# # 3 lentele pabaiga.
-
-
-# # 4 lentele. Palyginimas - kritiku ir zmoniu ivertinimo vidurkis pagal filmo isleidimo metus
-# df['years'] = pd.to_numeric(df['years'], errors='coerce')
-#
-# avg_ratings_by_year = df.groupby('years')[['people_rating', 'critic_rating']].mean()
-#
-# fig, ax1 = plt.subplots(figsize=(12, 6))
-#
-# ax1.plot(avg_ratings_by_year.index, avg_ratings_by_year['people_rating'], label='People Rating', marker='o', color='green')
-# ax1.set_xlabel('Year')
-# ax1.set_ylabel('People Rating', color='green')
-# ax1.tick_params(axis='y', labelcolor='green')
-# ax1.set_ylim(1, 10)
-#
-# ax2 = ax1.twinx()
-# ax2.plot(avg_ratings_by_year.index, avg_ratings_by_year['critic_rating'], label='Critic Rating', marker='o', color='red')
-# ax2.set_ylabel('Critic Rating', color='red')
-# ax2.tick_params(axis='y', labelcolor='red')
-# ax2.set_ylim(1, 100)
-#
-# plt.title('Average Ratings by Year')
-# plt.show()
-# # 4 lentele pabaiga
-
-
-# # 5 lentele. Prognoze - kaip keiciasi vidutinis balsu skaicius per filma, pagal metus ir prognoze iki 2035
-#
-# # Balsu suma pagal metus
-# votes_per_year = df.groupby('years')['votes'].sum()
-#
-# # Fimu suma pagal metus
-# movies_count_per_year = df.groupby('years').size()
-#
-# # Balsu vidurkis
-# average_votes_per_movie_per_year = votes_per_year / movies_count_per_year
-#
-# # Sudarome DataFrame su reikiamais duomenimis
-# df_votes_per_year = pd.DataFrame({
-#     'Years': average_votes_per_movie_per_year.index,
-#     'Average Votes per Movie': average_votes_per_movie_per_year.values
-# })
-#
-# df_votes_per_year = df_votes_per_year[df_votes_per_year['Years'] >= 1990]
-#
-# # Tiesinės regresijos modelis
-# X = df_votes_per_year[['Years']]
-# y = df_votes_per_year['Average Votes per Movie']
-# reg_model = LinearRegression().fit(X, y)
-#
-# # Prognozė nuo 2024 iki 2035 metų
-# future_years = pd.DataFrame({'Years': range(2024, 2036)})
-# future_votes = reg_model.predict(future_years)
-#
-# # Sudarome DataFrame su prognoze
-# df_future_votes = pd.DataFrame({
-#     'Years': future_years['Years'],
-#     'Average Votes per Movie (Forecast)': future_votes
-# })
-# # Sudarome bendrą DataFrame su esamais ir prognozuojamais duomenimis
-# df_combined = pd.concat([df_votes_per_year, df_future_votes])
-#
-# # Grafiko piešimas
-# plt.figure(figsize=(12, 8))
-# plt.plot(df_combined['Years'], df_combined['Average Votes per Movie'], label='Actual (1990-2022)')
-# plt.plot(df_combined['Years'], df_combined['Average Votes per Movie (Forecast)'], label='Forecast (2024-2035)', linestyle='dashed', color='red')
-# plt.title('Average Votes per Movie Over the Years with Forecast')
-# plt.xlabel('Years')
-# plt.ylabel('Average Votes per Movie')
-# plt.legend()
-# plt.show()
-# # 5 lentele pabaiga.
-
-
-# 6 lentele. Puliariausias zanras pagal metus, metus imant nuo 2000
-genre_popularity = df['genre'].value_counts()
+# # 6 lenteles pabaiga.
