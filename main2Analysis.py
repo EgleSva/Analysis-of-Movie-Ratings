@@ -39,7 +39,7 @@ df['title'] = df['title'].astype("string")
 populiariausi_metai = df['years'].value_counts().head(5)
 # print(populiariausi_metai)
 
-# Random pavadinimas - top 5 dazniausiai naudojami zodziai pavadinimuose, kurie yra ilgesni arba lygu nei 4 raides, pavadinimuose
+# 1 lentele. Random pavadinimas - top 5 dazniausiai naudojami zodziai pavadinimuose, kurie yra ilgesni arba lygu nei 4 raides, pavadinimuose
 col = 'title'
 df_filtered = df[df[col].notnull()]
 all_words = ' '.join(df_filtered[col].astype(str))
@@ -60,3 +60,4 @@ plt.xlabel('Words')
 plt.ylabel('Frequency')
 plt.title('Top 5 words in titles that are longer or equal to 4 letters')
 plt.show()
+# 1 lentele pabaiga.
