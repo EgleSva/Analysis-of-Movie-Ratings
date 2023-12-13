@@ -33,6 +33,12 @@ ax2.set_ylabel('Critic Rating', color='red')
 ax2.tick_params(axis='y', labelcolor='red')
 ax2.set_ylim(1, 100)
 plt.title('Average Ratings by Year')
-plt.show()
+# plt.show()
 
-###
+### Top 10 filmu, kurie turi vidutiniskai geriausius ivertinimus, atsizvelgiant i zmoniu balsavima ir kritiku balsavima
+
+
+### Top 5 populiariausia filmu metai
+populiariausi_metai = df['years'].value_counts().head(5)
+# print(populiariausi_metai)
+
