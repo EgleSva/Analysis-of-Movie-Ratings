@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # # Load data from CSV
-df = pd.read_csv("imdb4.csv")
+df = pd.read_csv("imdbfilms.csv")
 
 ### Apsivalome duomenis
 
@@ -15,7 +15,7 @@ df['votes'] = df['votes'].replace(',', '', regex=True)
 df['votes'] = df['votes'].astype(int)
 
 ## pasitikriname, kokius duomenu tipus turime
-# column_types = df.dtypes
+column_types = df.dtypes
 # print(column_types)
 
 ### Zmoniu ir kritiku reitingai per metus
