@@ -4,6 +4,7 @@ from sqlalchemy import create_engine
 from sklearn.linear_model import LinearRegression
 import seaborn as sns
 import psycopg2
+import numpy as np
 
 # Duomenų bazės prisijungimo parametrai
 db_host = 'localhost'
@@ -17,16 +18,17 @@ engine = create_engine(f'postgresql://{db_user}:{db_password}@{db_host}/{db_name
 # SQL užklausa duomenims ištraukti
 select_query = '''
     SELECT title, genre, years, duration, rating, people_rating, critic_rating, votes
-    FROM imdbfilms
+    FROM imdbfilms2
 '''
 
 # Sukuriame DataFrame iš SQL duomenų
 df = pd.read_sql_query(select_query, engine)
 
-# Peržiūrime duomenis
+# Pasitikriname duomenis
 # print(df.head())
 
 # Apsivalome duomenis
+df.replace("N/A", np.NaN, inplace=True)
 df.dropna(axis=0, inplace=True)
 df['years'] = pd.to_numeric(df['years'], errors='coerce')
 df['people_rating'] = df['people_rating'].astype(float)
@@ -37,11 +39,11 @@ df['votes'] = df['votes'].astype(int)
 df['title'] = df['title'].astype("string")
 
 
-# Top 5 populiariausia filmu metai
-populiariausi_metai = df['years'].value_counts().head(5)
+# # Top 5 populiariausia filmu metai
+# populiariausi_metai = df['years'].value_counts().head(5)
 # print(populiariausi_metai)
 
-# # 5 lentele. Random pavadinimas - top 5 dazniausiai naudojami zodziai pavadinimuose, kurie yra ilgesni arba lygu nei 4 raides, pavadinimuose
+# # 1. lentele. Top 5 dazniausiai naudojami zodziai pavadinimuose, kurie yra ilgesni arba lygus nei 4 raides.
 # col = 'title'
 #
 # # Ismetame eilutes su null reiksme
@@ -73,10 +75,10 @@ populiariausi_metai = df['years'].value_counts().head(5)
 # plt.ylabel('Frequency')
 # plt.title('Top 5 words in titles that are longer or equal to 4 letters')
 # plt.show()
-# # 5 lentele pabaiga.
+# # 1 lentele pabaiga.
 
 
-# # 1 lentele.  Koreliacija - kaip kinta zmoniu ivertinimas, nuo balsu kiekio
+# # 2 lentele.  Koreliacija - kaip kinta zmoniu ivertinimas, nuo balsu kiekio
 # correlation = df['votes'].corr(df['people_rating'])
 #
 # # Grafinis pavaizdavimas
@@ -87,10 +89,10 @@ populiariausi_metai = df['years'].value_counts().head(5)
 # plt.ylabel('People\'s Ratings')
 #
 # plt.show()
-# # 1 lentele pabaiga.
+# # 2 lentele pabaiga.
 
 
-# # 6 lentele. Penktadienio filmo rekomendacija - Top 10 filmu, kuriu pavadinime yra zodis Christmas, geriausias ivertinimas pagal kritikus, geriausias ivertinimas pagal zmones, daugiausia balsu.
+# # 3 lentele. Top 10 filmu, kuriu pavadinime yra zodis Christmas, geriausias ivertinimas pagal kritikus, geriausias ivertinimas pagal zmones, daugiausia balsu.
 # # Filtruojame filmus, kurių pavadinime yra "Christmas"
 # df_christmas = df[df['title'].str.contains('Christmas', case=False)]
 #
@@ -137,10 +139,10 @@ populiariausi_metai = df['years'].value_counts().head(5)
 # fig.suptitle('Top 10 Critically Acclaimed Movies with People Ratings and Votes')
 # fig.tight_layout(rect=[0, 0.03, 1, 0.95])
 # plt.show()
-# # 6 lentele pabaiga.
+# # 3 lentele pabaiga.
 
 
-# # 3 lentele. Palyginimas - kritiku ir zmoniu ivertinimo vidurkis pagal filmo isleidimo metus
+# # 4 lentele. Palyginimas - kritiku ir zmoniu ivertinimo vidurkis pagal filmo isleidimo metus
 # df['years'] = pd.to_numeric(df['years'], errors='coerce')
 #
 # avg_ratings_by_year = df.groupby('years')[['people_rating', 'critic_rating']].mean()
@@ -161,10 +163,10 @@ populiariausi_metai = df['years'].value_counts().head(5)
 #
 # plt.title('Average Ratings by Year')
 # plt.show()
-# 3 lentele pabaiga
+# # 4 lentele pabaiga
 
 
-# # 2. lentele. Prognoze - kaip keiciasi vidutinis balsu skaicius per filma, pagal metus, ir padaryti prognoze iki 2035
+# # 5 lentele. Prognoze - kaip keiciasi vidutinis balsu skaicius per filma, pagal metus ir prognoze iki 2035
 #
 # # Balsu suma pagal metus
 # votes_per_year = df.groupby('years')['votes'].sum()
@@ -209,7 +211,8 @@ populiariausi_metai = df['years'].value_counts().head(5)
 # plt.ylabel('Average Votes per Movie')
 # plt.legend()
 # plt.show()
-# 2 lentele pabaiga.
+# # 5 lentele pabaiga.
 
 
-# 4 lentele. Puliariausias zanras pagal metus, metus imant nuo 2000
+# 6 lentele. Puliariausias zanras pagal metus, metus imant nuo 2000
+genre_popularity = df['genre'].value_counts()
