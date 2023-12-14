@@ -39,7 +39,7 @@ df['votes'] = df['votes'].astype(int)
 df['title'] = df['title'].astype("string")
 
 
-# # 1. lentelė. Top 5 dažniausiai naudojami žodžiai pavadinimuose, kurie yra ilgesni arba lygūs nei 4 raidės.
+# # 5. lentelė. Top 5 dažniausiai naudojami žodžiai pavadinimuose, kurie yra ilgesni arba lygūs nei 4 raidės.
 # col = 'title'
 #
 # # Išmetame eilutes su null reikšme
@@ -71,10 +71,10 @@ df['title'] = df['title'].astype("string")
 # plt.ylabel('Frequency')
 # plt.title('Graph 5. Top 5 words in titles that are longer or equal to 4 letters')
 # plt.show()
-# # 1 lenteles pabaiga.
+# # 5 lenteles pabaiga.
 
 
-# # 2 lentelė. Koreliacija - kaip kinta žmonių įvertinimas, nuo balsų kiekio
+# # 3 lentelė. Koreliacija - kaip kinta žmonių įvertinimas, nuo balsų kiekio
 # correlation = df['votes'].corr(df['people_rating'])
 #
 # # Grafinis pavaizdavimas
@@ -86,10 +86,10 @@ df['title'] = df['title'].astype("string")
 # plt.ylabel('People\'s Ratings')
 #
 # plt.show()
-# # 2 lentelės pabaiga.
+# # 3 lentelės pabaiga.
 
 
-# # 3 lentelė. Palyginimas - kritikų ir žmonių įvertinimo vidurkis pagal filmo išleidimo metus
+# # 2 lentelė. Palyginimas - kritikų ir žmonių įvertinimo vidurkis pagal filmo išleidimo metus
 # df['years'] = pd.to_numeric(df['years'], errors='coerce')
 #
 # avg_ratings_by_year = df.groupby('years')[['people_rating', 'critic_rating']].mean()
@@ -112,7 +112,7 @@ df['title'] = df['title'].astype("string")
 #
 # plt.title('Graph 2.Average Ratings by Year Critic vs People')
 # plt.show()
-# # 3 lenteles pabaiga
+# # 2 lenteles pabaiga
 
 
 # # 4 lentelė. Prognozė - kaip keičiasi vidutinis balsų skaičius per filmą, pagal metus ir prognozė iki 2035
@@ -165,7 +165,7 @@ df['title'] = df['title'].astype("string")
 # # 4 lentelės pabaiga.
 
 
-# # 5 lentelė. Top 10 populiariausių kategorijų.
+# # 1 lentelė. Top 10 populiariausių kategorijų.
 # # Išsitraukiame top 10 populiariausių kategorijų
 # genre_popularity = df['genre'].value_counts().head(10)
 #
@@ -177,7 +177,7 @@ df['title'] = df['title'].astype("string")
 # plt.xticks(rotation=45)
 # plt.subplots_adjust(bottom=0.3)
 # plt.show()
-# # 5 lentelės pabaiga.
+# # 1 lentelės pabaiga.
 
 
 # # 6 lentelė. Top 10 filmų, kurių pavadinime yra žodis Christmas, geriausias įvertinimas pagal kritikus, geriausias įvertinimas pagal žmones, daugiausia balsų.
