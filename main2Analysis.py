@@ -69,7 +69,7 @@ df['title'] = df['title'].astype("string")
 # plt.bar(top_words_df['Word'], top_words_df['Frequency'], color='darkolivegreen')
 # plt.xlabel('Words')
 # plt.ylabel('Frequency')
-# plt.title('Top 5 words in titles that are longer or equal to 4 letters')
+# plt.title('Graph 5. Top 5 words in titles that are longer or equal to 4 letters')
 # plt.show()
 # # 1 lenteles pabaiga.
 
@@ -81,7 +81,7 @@ df['title'] = df['title'].astype("string")
 # plt.figure(figsize=(10, 6))
 # sns.regplot(x='votes', y='people_rating', data=df, scatter_kws={'s': 50, 'color': 'darkolivegreen'},
 #             line_kws={'color': 'purple'})
-# plt.title(f'Correlation between Votes and People\'s Ratings: {correlation:.2f}')
+# plt.title(f'Graph 3. Correlation between Votes and People\'s Ratings: {correlation:.2f}')
 # plt.xlabel('Votes')
 # plt.ylabel('People\'s Ratings')
 #
@@ -110,7 +110,7 @@ df['title'] = df['title'].astype("string")
 # ax2.tick_params(axis='y', labelcolor='purple')
 # ax2.set_ylim(1, 100)
 #
-# plt.title('Average Ratings by Year')
+# plt.title('Graph 2.Average Ratings by Year Critic vs People')
 # plt.show()
 # # 3 lenteles pabaiga
 
@@ -157,7 +157,7 @@ df['title'] = df['title'].astype("string")
 #          color='darkolivegreen')
 # plt.plot(df_combined['Years'], df_combined['Average Votes per Movie (Forecast)'], label='Forecast (2024-2035)',
 #          linestyle='dashed', color='purple')
-# plt.title('Average Votes per Movie Over the Years with Forecast')
+# plt.title('Graph 4. Average Votes per Movie Over the Years with Forecast')
 # plt.xlabel('Years')
 # plt.ylabel('Average Votes per Movie')
 # plt.legend()
@@ -223,7 +223,7 @@ df['title'] = df['title'].astype("string")
 # ax1.set_xticklabels(top10_movies_critic['title'], rotation=45, ha='right')
 #
 # # Aprašymas
-# fig.suptitle('Top 10 Critically Acclaimed Movies with People Ratings and Votes')
+# fig.suptitle('Graph 6. Top 10 "Christmas" Critically Acclaimed Movies with People Ratings and Votes')
 # fig.tight_layout(rect=[0, 0.03, 1, 0.95])
 # plt.show()
 # # 6 lentelės pabaiga.
