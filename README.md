@@ -45,7 +45,7 @@ This is the **end project** of Data Analysis and Python Programming Basics at Vi
 
 6. BONUS graph - 
 ![6_lentele.png](6_lentele.png)
-Recommendation
+Garph 6. TOP 10 "Christmas" Critically Acclaimed Movies with People Ratings and Votes. This graph is intended to provide you with movie recommendations for the Christmas season. It filters the best movies based on critic ratings with the word "Christmas" in the title. The graph also displays the audience rating and the number of votes for each film.
 
 ## Conclusion
 
