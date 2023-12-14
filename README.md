@@ -8,7 +8,7 @@ This is the **end project** of Data Analysis and Python Programming Basics at Vi
 
 **Course lecturer**: Modestas Viršila
 
-**Project description**: .......(main goal)
+**Project description**: ............(main goal)
 
 ## _Applied knowledge_
 
@@ -22,7 +22,7 @@ This is the **end project** of Data Analysis and Python Programming Basics at Vi
 
 ### Short description of files:
 
-**ADDITIONALmain2.py**: full code for scraping the website and moving to database (url: https://www.imdb.com/search/title/?title_type=feature)
+**ADDITIONALmain2.py**: full code for scraping the website and moving the data to a database (url scraped: https://www.imdb.com/search/title/?title_type=feature)
 
 **main2Analysis.py**: code for taking the data from database, data cleanup, all of the analysis and their graphs
 
