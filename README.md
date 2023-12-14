@@ -36,6 +36,7 @@ This is the **end project** of Data Analysis and Python Programming Basics at Vi
 Graph 1 shows what are the most produced genre of movies of all time. The most popular one is Action genre, there are 1400 movies in this category out of 7000 total movies. The close runner-up is Comedy with more than 1200 movies and in the third place there is Drama genre with more than 1000 movies.
 
 
+
 **2. graph - Comparison. Average Ratings by Year Critic vs People.**
 ![2_graph_old3.png](2_graph_old3.png)
 This graph, labeled as "Graph 2. Average Ratings by Year Critic vs People," illustrates the average ratings of movies over the years, comparing ratings from both critics and general audiences. The green line represents the average people rating, while the purple line represents the average critic rating. The x-axis shows the years, and the y-axes represent the rating scales. 
@@ -44,9 +45,11 @@ Movies created until 1980 receive higher ratings from critics than from audience
 Since 2020, the ratings from both critics and audiences have become very similar.
 
 
+
 **3. graph - Correlation between Votes and People's Ratings**
 ![3_graph_old2.png](3_graph_old2.png)
 Graph 3 illustrates the correlation between votes and people's ratings, revealing a correlation coefficient of 0.43. This positive correlation suggests a moderate association between the number of votes a movie receives and its people's rating. In other words, movies with higher people's ratings tend to attract more votes.
+
 
 
 **4. graph - Average Votes per Movie Over the Years with Forecast.**
@@ -55,9 +58,11 @@ Graph 4 portrays the trend in average votes per movie over the years, encompassi
 Since 2012, there has been a diminishing trend in IMDb page viewers' voting activity, as evidenced by the declining average votes per movie. This may indicate a shift in user engagement or preferences on the platform during this period.
 
 
+
 **5. graph - TOP 5 most frequent words in titles that are longer or equal to 4 letters.**
 ![5_graph_old1.png](5_graph_old1.png)
 Graph 5 illustrates what are the top 5 most used words that have more than 4 letters in movie titles. The most used word is "Last", it has been used in more than 50 movies' titles. In the second and third places there are "Night" and "Christmas" accordingly with both being used in more than 40 movies.
+
 
 
 **6. BONUS graph - TOP 10 "Christmas" Critically Acclaimed Movies with People Ratings and Votes.**
