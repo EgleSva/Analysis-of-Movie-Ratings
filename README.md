@@ -42,13 +42,15 @@ Since 2020, the ratings from both critics and audiences have become very similar
 ![3_lentele.png](3_lentele.png)
 Graph 3 illustrates the correlation between votes and people's ratings, revealing a correlation coefficient of 0.43. This positive correlation suggests a moderate association between the number of votes a movie receives and its people's rating. In other words, movies with higher people's ratings tend to attract more votes.
 
-5. graph - 
+4. graph - Average Votes per Movie Over the Years with Forecast.
 ![4_lentele.png](4_lentele.png)
+Graph 4 portrays the trend in average votes per movie over the years, encompassing both historical data from 1990 to 2022 and a forecast from 2024 to 2035. The solid line represents actual data, demonstrating a fluctuating pattern, while the dashed line extends the projection into the future. The forecast, derived from a linear regression model, suggests a continuing decline in average votes per movie from 2024 to 2035.
+Since 2012, there has been a diminishing trend in IMDb page viewers' voting activity, as evidenced by the declining average votes per movie. This may indicate a shift in user engagement or preferences on the platform during this period.
 
-6. graph - 
+5. graph - 
 ![5_lentele.png](5_lentele.png)
 
-7. BONUS graph - TOP 10 "Christmas" Critically Acclaimed Movies with People Ratings and Votes.
+6. BONUS graph - TOP 10 "Christmas" Critically Acclaimed Movies with People Ratings and Votes.
 ![6_lentele.png](6_lentele.png)
 Graph 6 is intended to provide you with movie recommendations for the Christmas season. It filters the best movies based on critic ratings with the word "Christmas" in the title. The graph also displays the audience rating and the number of votes for each film.
 
