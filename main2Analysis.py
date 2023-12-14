@@ -171,7 +171,7 @@ df['title'] = df['title'].astype("string")
 #
 # # Grafikas
 # genre_popularity.plot(kind='bar', color='darkolivegreen')
-# plt.title('Top 10 most popular genres')
+# plt.title('Graph 1. Top 10 most popular genres')
 # plt.xlabel('Genres')
 # plt.ylabel('Frequency')
 # plt.xticks(rotation=45)
