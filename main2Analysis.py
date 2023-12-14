@@ -27,7 +27,7 @@ df = pd.read_sql_query(select_query, engine)
 # Pasitikriname duomenis
 # print(df.head())
 
-# Duomenų tvarkymas
+# Tvarkome duomenis
 df.replace("N/A", np.NaN, inplace=True)
 df.dropna(axis=0, inplace=True)
 df['years'] = pd.to_numeric(df['years'], errors='coerce')
