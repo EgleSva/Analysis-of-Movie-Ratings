@@ -223,7 +223,7 @@ df['title'] = df['title'].astype("string")
 # ax1.set_xticklabels(top10_movies_critic['title'], rotation=45, ha='right')
 #
 # # Aprašymas
-# fig.suptitle('Top 10 Critically Acclaimed Movies with People Ratings and Votes')
+# fig.suptitle('Graph 6. Top 10 "Christmas" Critically Acclaimed Movies with People Ratings and Votes')
 # fig.tight_layout(rect=[0, 0.03, 1, 0.95])
 # plt.show()
 # # 6 lentelės pabaiga.
