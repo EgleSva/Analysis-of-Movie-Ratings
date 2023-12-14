@@ -29,22 +29,22 @@ This is the **end project** of Data Analysis and Python Programming Basics at Vi
 ## Analysis results
 
 1. graph - TOP 5 most frequent words in titles that are longer or equal to 4 letters.
-.......... IMG ...............
+![1_lentele.png](..%2F..%2FUsers%2FEgle%2FOneDrive%2FDocuments%2FData%20analytics%2FBaigiamojo%20imgs%20Final%20project%2F1_lentele.png)
 
-2. graph - 
-.......... IMG ...............
+2. graph - Correlation. The change of people's evaluation, depending on the number of votes.
+![2_lentele.png](..%2F..%2FUsers%2FEgle%2FOneDrive%2FDocuments%2FData%20analytics%2FBaigiamojo%20imgs%20Final%20project%2F2_lentele.png)
 
-3. graph - 
-.......... IMG ...............
+3. graph - Comparison. The average of people's and critics' ratings by year of films releases.
+![3_lentele.png](..%2F..%2FUsers%2FEgle%2FOneDrive%2FDocuments%2FData%20analytics%2FBaigiamojo%20imgs%20Final%20project%2F3_lentele.png)
 
 4. graph - 
-.......... IMG ...............
+![4_lentele.png](..%2F..%2FUsers%2FEgle%2FOneDrive%2FDocuments%2FData%20analytics%2FBaigiamojo%20imgs%20Final%20project%2F4_lentele.png)
 
 5. graph - 
-.......... IMG ...............
+![5_lentele.png](..%2F..%2FUsers%2FEgle%2FOneDrive%2FDocuments%2FData%20analytics%2FBaigiamojo%20imgs%20Final%20project%2F5_lentele.png)
 
 6. BONUS graph - 
-.......... IMG ...............
+![6_lentele.png](..%2F..%2FUsers%2FEgle%2FOneDrive%2FDocuments%2FData%20analytics%2FBaigiamojo%20imgs%20Final%20project%2F6_lentele.png)
 Recommendation
 
 ## Conclusion
