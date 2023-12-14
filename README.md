@@ -57,6 +57,7 @@ Since 2012, there has been a diminishing trend in IMDb page viewers' voting acti
 ![6_graph_old6.png](6_graph_old6.png)
 Graph 6 is intended to provide you with movie recommendations for the Christmas season. It filters the best movies based on critic ratings with the word "Christmas" in the title. The graph also displays the audience rating and the number of votes for each film.
 
+
 ## Conclusion
 
 _..............._
