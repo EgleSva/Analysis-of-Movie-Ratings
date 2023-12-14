@@ -84,7 +84,7 @@ driver.get(url)
 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 time.sleep(5)  # Uzkrovimo laikas
 
-# Paspaudžiame "See More" mygtuką 5 kartus
+# Paspaudžiame "See More" mygtuką nurodytą kiekį kartų
 for i in range(220):
     click_more()
     # Scrollinam
@@ -117,7 +117,7 @@ for movie in movies:
         year = movie_details[0].text.strip()
     if len(movie_details) >= 2:
         duration = movie_details[1].text.strip()
-        # Convert duration to minutes
+        # Konvertuojame trukmę į monutes
         duration = convert_duration_to_minutes(duration)
     if len(movie_details) >= 3:
         rating = movie_details[2].text.strip()
