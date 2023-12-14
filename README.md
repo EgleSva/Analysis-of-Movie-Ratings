@@ -8,7 +8,7 @@ This is the **end project** of Data Analysis and Python Programming Basics at Vi
 
 **Course lecturer**: Modestas Viršila
 
-**Project description**: ............(main goal)
+**Project description**: The main goal of this project is to analyze the real data in imdb.com website and find out which category has the most movies made, compare ratings by critics and people over the years, see if there is a correlation between votes number and people's ratings, what are the most used words in films’ titles. We also aim to make a forecast for average votes over the next few years showcasing the possible popularity of this website. Moreover, as a bonus we will suggest a movie recommendation based on the ratings and topic.
 
 ## _Applied knowledge_
 
@@ -26,7 +26,7 @@ This is the **end project** of Data Analysis and Python Programming Basics at Vi
 
 **main2Analysis.py**: code for taking the data from database, data cleanup, all of the analysis and their graphs
 
-## Analysis results
+## _Analysis results_
 
 
 1. graph - TOP 10 most popular genres.
@@ -65,6 +65,6 @@ Graph 5 illustrates what are the top 5 most used words that have more than 4 let
 Graph 6 is intended to provide you with movie recommendations for the Christmas season. It filters the best movies based on critic ratings with the word "Christmas" in the title. The graph also displays the audience rating and the number of votes for each film.
 
 
-## Conclusion
+## _Conclusion_
 
 _..............._
