@@ -13,7 +13,7 @@ import psycopg2
 db_host = 'localhost'
 db_name = 'films'
 db_user = 'postgres'
-db_password = '3T8tWn4ME'
+db_password = ''
 
 connection = psycopg2.connect(host=db_host, database=db_name, user=db_user, password=db_password)
 cursor = connection.cursor()

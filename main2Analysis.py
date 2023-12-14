@@ -10,7 +10,7 @@ import numpy as np
 db_host = 'localhost'
 db_name = 'films'
 db_user = 'postgres'
-db_password = '3T8tWn4ME'
+db_password = ''
 
 # Prisijungiame prie duomenų bazės
 engine = create_engine(f'postgresql://{db_user}:{db_password}@{db_host}/{db_name}')
