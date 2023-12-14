@@ -28,22 +28,23 @@ This is the **end project** of Data Analysis and Python Programming Basics at Vi
 
 ## Analysis results
 
-1. graph - TOP 5 most frequent words in titles that are longer or equal to 4 letters.
-![1_lentele.png](1_lentele.png)
+1. graph - TOP 10 most popular genres.
+![1_graph_old5.png](1_graph_old5.png)
+
 
 2. graph - Comparison. Average Ratings by Year Critic vs People.
-![2_lentele.png](2_lentele.png)
+![2_graph_old3.png](2_graph_old3.png)
 This graph, labeled as "Graph 2. Average Ratings by Year Critic vs People," illustrates the average ratings of movies over the years, comparing ratings from both critics and general audiences. The green line represents the average people rating, while the purple line represents the average critic rating. The x-axis shows the years, and the y-axes represent the rating scales. 
 The graph provides a visual comparison of how movies have been rated over different years by both critics and the general audience.
 Movies created until 1980 receive higher ratings from critics than from audiences. From 1980 to 2020, audience ratings are higher than those from critics.
 Since 2020, the ratings from both critics and audiences have become very similar.
 
-3. graph - Corelation between Votes and People's Ratings
-![3_lentele.png](3_lentele.png)
+3. graph - Correlation between Votes and People's Ratings
+![3_graph_old2.png](3_graph_old2.png)
 Graph 3 illustrates the correlation between votes and people's ratings, revealing a correlation coefficient of 0.43. This positive correlation suggests a moderate association between the number of votes a movie receives and its people's rating. In other words, movies with higher people's ratings tend to attract more votes.
 
 4. graph - Average Votes per Movie Over the Years with Forecast.
-![4_lentele.png](4_lentele.png)
+![4_graph_old4.png](4_graph_old4.png)
 Graph 4 portrays the trend in average votes per movie over the years, encompassing both historical data from 1990 to 2022 and a forecast from 2024 to 2035. The solid line represents actual data, demonstrating a fluctuating pattern, while the dashed line extends the projection into the future. The forecast, derived from a linear regression model, suggests a continuing decline in average votes per movie from 2024 to 2035.
 Since 2012, there has been a diminishing trend in IMDb page viewers' voting activity, as evidenced by the declining average votes per movie. This may indicate a shift in user engagement or preferences on the platform during this period.
 
