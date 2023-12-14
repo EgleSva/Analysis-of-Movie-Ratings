@@ -28,7 +28,9 @@ This is the **end project** of Data Analysis and Python Programming Basics at Vi
 
 ## Analysis results
 
+
 1. graph - TOP 10 most popular genres.
+
 ![1_graph_old5.png](1_graph_old5.png)
 
 
