@@ -2,7 +2,7 @@
 
 ## _Details_
 
-**Created by**: Eglė Švažienė and Vykintas Luciunas
+**Created by**: Eglė Švažienė and Vykintas Lučiūnas
 
 This is the **end project** of Data Analysis and Python Programming Basics at Vilnius Coding School
 
@@ -57,6 +57,7 @@ Since 2012, there has been a diminishing trend in IMDb page viewers' voting acti
 
 **5. graph - TOP 5 most frequent words in titles that are longer or equal to 4 letters.**
 ![5_graph_old1.png](5_graph_old1.png)
+
 Graph 5 illustrates what are the top 5 most used words that have more than 4 letters in movie titles. The most used word is "Last", it has been used in more than 50 movies' titles. In the second and third places there are "Night" and "Christmas" accordingly with both being used in more than 40 movies.
 
 
