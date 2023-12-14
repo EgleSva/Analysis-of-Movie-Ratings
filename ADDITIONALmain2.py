@@ -157,7 +157,7 @@ driver.quit()
 
 # Sukuriame DataFrame ir išsaugome į CSV
 df = pd.DataFrame(movies_list)
-df.to_csv("imdbfilms.csv", index=False)
+# df.to_csv("imdbfilms.csv", index=False)
 # print(df)
 
 # Uždarome duombazės prisijungimą
