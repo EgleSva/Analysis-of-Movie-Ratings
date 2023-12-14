@@ -32,6 +32,7 @@ This is the **end project** of Data Analysis and Python Programming Basics at Vi
 1. graph - TOP 10 most popular genres.
 
 ![1_graph_old5.png](1_graph_old5.png)
+
 Graph 1 shows what are the most produced genre of movies of all time. The most popular one is Action genre, there are 1400 movies in this category out of 7000 total movies. The close runner-up is Comedy with more than 1200 movies and in the third place there is Drama genre with more than 1000 movies.
 
 
